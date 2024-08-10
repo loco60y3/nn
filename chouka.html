@@ -83,7 +83,7 @@
 				const is = document.getElementById("is")
 				// 动态生成列表项  
 				let arry = ["抱抱2分钟", "吻一分钟", "抱脑袋亲", "去吃烧烤", "出去逛街", "一起唱一首歌", "让对方摸...", "一起喝一杯奶茶", "把对方扑倒然后..",
-					"闭眼接受惩罚", "学一种动物叫", "说三声我爱你"
+					"闭眼接受惩罚", "学一种动物叫", "说三声我爱你","学猪叫","给对方摸摸头","坐腿上","念一段绕口令"
 				]
 				for (let i = 0; i < arry.length; i++) {
 					const listItem = document.createElement('div');
@@ -115,7 +115,11 @@
 					allList.style.transform = `translateX(-${result}px)`;
 
 					setTimeout(() => {
+						if(randomLength==arry.length){
+							randomLength--
+						}
 						is.innerText="抽到的是："+arry[randomLength]
+						
 						startBtn.disabled = false; // 禁用按钮  
 					
 					}, 3000); 
