@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>原生JS实现</title>
+		<style>
+			body {
+				background-color: #ffedf5;
+			}
+
+			#app {}
+
+			.box,
+			#parent-width {
+				width: 80vw;
+				height: 140px;
+				/* background: rgba(43, 55, 61, 0.37); */
+				overflow: auto;
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				scrollbar-width: none;
+			}
+
+			.box-icon {
+				margin: 0 auto;
+			}
+
+			.all-list {
+				width: 7000px;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: flex-start;
+				overflow-x: auto;
+			}
+
+			.list-item {
+				width: 80px;
+				height: 100px;
+				background: #f8f8f8;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				margin: 10px;
+			} 
+			button {
+				padding: 10px 20px;
+				font-size: 16px;
+				background-color: white;
+				border:none;
+					box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+					margin: 0 auto;
+					
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<h1>wowowow，抽卡呀！</h1>
+			<div class="box" id="parent-width">
+				<div class="box-icon" style="/* 假设的图标样式 */"></div>
+				<div class="all-list" id="all-list" style="transform: translateX(0);">
+					<!-- 动态生成列表项 -->
+				</div>
+				<div class="box-icon" style="/* 假设的图标样式 */">↑</div>
+			</div>
+			<h3 id="is">抽到的是：</h3>
+			
+			<button type="button" id="start-btn">开 始</button>
+			<button type="button"  onclick="toto('select')">回去</button>
+			
+		</div>
+
+		<script>
+			function toto(w){
+				 console.log(2)
+					window.location.href = w+".html";
+			}
+			document.addEventListener('DOMContentLoaded', function() {
+				const parentWidth = document.getElementById('parent-width').offsetWidth;
+				const allList = document.getElementById('all-list');
+				const startBtn = document.getElementById('start-btn');
+				const is = document.getElementById("is")
+				// 动态生成列表项  
+				let arry = ["抱抱2分钟", "吻一分钟", "抱脑袋亲", "去吃烧烤", "出去逛街", "一起唱一首歌", "让对方摸...", "一起喝一杯奶茶", "把对方扑倒然后..",
+					"闭眼接受惩罚", "学一种动物叫", "说三声我爱你"
+				]
+				for (let i = 0; i < arry.length; i++) {
+					const listItem = document.createElement('div');
+					listItem.classList.add('list-item');
+					listItem.textContent = arry[i];
+					allList.appendChild(listItem);
+				}
+
+				startBtn.addEventListener('click', function() {
+					startBtn.disabled = true; // 禁用按钮  
+					const jcLength = 49;
+					const boxWidth = 80;
+					const marginWidth = 20;
+					// 中奖  
+					// 定义一个函数来生成一个介于 min 和 max（包括 min 和 max）之间的随机整数  
+					function getRandomInt(min, max) {
+						return Math.floor(Math.random() * (max - min + 1)) + min;
+					}
+
+					// 使用 arry.length 来确定随机数的上限，同时设定一个下限（比如 1）  
+					const randomLength = getRandomInt(1, arry.length);
+					
+					// 现在，您可以使用 randomLength 来代替原来的硬编码值 10  
+					const result = (jcLength * boxWidth) + (jcLength * marginWidth) +
+						((randomLength - jcLength) * (boxWidth + marginWidth)) -
+						(parentWidth / 2) + (boxWidth + marginWidth) / 2;
+
+					allList.style.transition = 'transform 3s';
+					allList.style.transform = `translateX(-${result}px)`;
+
+					setTimeout(() => {
+						is.innerText="抽到的是："+arry[randomLength]
+						startBtn.disabled = false; // 禁用按钮  
+					
+					}, 3000); 
+				});
+			});
+		</script>
+	</body>
+</html>
