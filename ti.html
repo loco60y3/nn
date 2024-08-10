@@ -1,365 +1,65 @@
-
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <script
-      id="jqbb"
-      src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"
-    ></script>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 使得页面适应手机屏幕 -->
+		<title>验证你是不是可闲</title>
+		<style>
+			body {
+				background-color: #ffedf5;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				/* 使内容垂直居中并填满整个视口 */
+				margin: 0;
+			}
 
-    <style type="text/css">
-	/* 	body {
-			text-align: center;
-		} */
-	
-      @import url("https://fonts.googleapis.com/css?family=Aleo");
-      :root {
-        font-family: "Aleo", sans-serif;
-      }
+			.code {
+				background-color: #fafafa;
+				padding: 20px;
+				border-radius: 8px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				text-align: center;
+			}
 
-      html,
-      body {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        background: rgb(119, 13, 13);
-        background: radial-gradient(
-          circle,
-          rgba(119, 13, 13, 0.92) 64%,
-          rgba(0, 0, 0, 0.6) 100%
-        );
-      }
+			input[type="text"] {
+				margin: 10px 0;
+				padding: 10px;
+				width: 200px;
+				/* 设置输入框宽度 */
 
-      canvas {
-        width: 100%;
-        height: 100%;
-      }
-      .label {
-        font-size: 2.2rem;
-        background: url("https://www.jq22.com/tp/6368077651977322227241996.png");
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        animation: moveBg 30s linear infinite;
-      }
+			}
 
-      @keyframes moveBg {
-        0% {
-          background-position: 0% 30%;
-        }
-        100% {
-          background-position: 1000% 500%;
-        }
-      }
-
-      .middle {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        user-select: none;
-      }
-
-      .time {
-        color: #d99c3b;
-        text-transform: uppercase;
-        display: flex;
-        justify-content: center;
-      }
-
-      .time span {
-        padding: 0 14px;
-        font-size: 0.8rem;
-      }
-
-      .time span div {
-        font-size: 3rem;
-      }
-
-      @media (max-width: 740px) {
-        .label {
-          font-size: 1.7rem;
-        }
-        .time span {
-          padding: 0 16px;
-          font-size: 0.6rem;
-        }
-        .time span div {
-          font-size: 2rem;
-        }
-      }
-	  
-	  
-	  
-	  
-	  
-	  button {
-	  	cursor: pointer;
-	  	width: 20%;
-	  	height: 60px;
-		background-color: #d99c3b;
-		color: white;
-		border: none;
-	  }
-	  
-	  .box {
-	  	transform: scale(0.3);
-	  	width: 1000px;
-	  	height: 1000px;
-	  	margin: 10px auto;
-	  	position: fixed;
-	  	overflow: hidden;
-		/* top: 0;	 */
-		/* left: -46%; */
-	  	display: flex;
-	  	justify-content: center;
-	  	align-items: center;
-	  }
-	  
-	  .main {
-	  	width: 100%;
-	  	height: 100%;
-	  	box-sizing: border-box;
-	  	border: 5px solid black;
-	  	border-radius: 50%;
-	  	background: rgba(128, 128, 128, 0.49);
-	  	overflow: hidden;
-	  	position: relative;
-	  	transition: all 3s cubic-bezier(0.46, 0.03, 0.52, 0.96);
-	  }
-	  
-	  .pointer {
-	  	width: 50px;
-	  	height: 50px;
-	  	background: white;
-	  	border-radius: 50%;
-	  	position: absolute;
-	  	top: 50%;
-	  	left: 50%;
-	  	transform: translate(-50%, -50%);
-	  	z-index: 9;
-	  }
-	  
-	  .pointer-bar {
-	  	width: 60px;
-	  	height: 25px;
-	  	background: white;
-	  	position: absolute;
-	  	left: 50%;
-	  	top: 50%;
-	  	transform: translate(0, -50%);
-	  }
-	  
-	  .pointer-cursor {
-	  	width: 25px;
-	  	height: 25px;
-	  	position: absolute;
-	  	left: 85px;
-	  	top: 50%;
-	  	transform: translate(-50%, -50%) rotateZ(45deg);
-	  	background: white;
-	  }
-	  
-	  .part {
-	  	height: 100%;
-	  	width: 50%;
-	  	position: absolute;
-	  	top: 0;
-	  	left: 50%;
-	  	transform-origin: left center;
-	  	z-index: 1;
-	  }
-	  
-	  .bg {
-	  	width: 100%;
-	  	height: 100%;
-	  }
-	  
-	  .title {
-	  	transform: translate(0, -50%);
-	  	transform-origin: left top;
-	  	width: 100%;
-	  	height: auto;
-	  	text-align: center;
-	  	font-size: 30px;
-	  	color: white;
-	  	position: absolute;
-	  	top: 50%;
-	  	left: 0;
-	  	padding-left: 85px;
-	  	box-sizing: border-box;
-	  	overflow: hidden;
-	  	text-overflow: ellipsis;
-	  	white-space: nowrap;
-	  }
-	  
-	  .winner {
-	  	font-size: 30px;
-	  	color: white;
-	  	font-weight: bold;
-	  }
-    </style>
-  </head>
-
-  <body>
-    <div class="middle">
-      <h1 class="label">距离我们见面还剩：</h1>
-      <div class="time">
-        <span>
-          <div id="LeftTime"></div>
-        </span>
-    </div>
-		<h5 class="label">后就来抽一发</h5>
-		<div class="box">
-			<div class="main" ontransitionend="end()">
-				<div id="temp" class="part" style="display: none;">
-					<div class="bg"></div>
-					<div class="title"></div>
-				</div>
+			button {
+				padding: 10px 20px;
+				font-size: 16px;
+				border:none;
+					box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="code">
+			<h1>你是可闲吗</h1>
+			<div>
+				<input type="text" id="passwordInput" placeholder="可闲可知道我们的密码"> <!-- 改为密码输入框 -->
 			</div>
-		
-			<div class="pointer">
-				<div class="pointer-bar"></div>
-				<div class="pointer-cursor"></div>
-			</div>
+			<button onclick="checkPassword()">我输入完密码啦，进去</button> <br>
 		</div>
-		
-		<button onclick="start()">开始</button>
-		<div class="winner"></div>
-		
-      </div>
-  </body>
-  <script>
-    class Snowflake {
-      constructor() {
-        this.x = 0;
-        this.y = 0;
-        this.vx = 0;
-        this.vy = 0;
-        this.radius = 0;
-        this.alpha = 0;
-
-        this.reset();
-      }
-
-      reset() {
-        this.x = this.randBetween(0, window.innerWidth);
-        this.y = this.randBetween(0, -window.innerHeight);
-        this.vx = this.randBetween(-3, 3);
-        this.vy = this.randBetween(2, 5);
-        this.radius = this.randBetween(1, 4);
-        this.alpha = this.randBetween(0.1, 0.9);
-      }
-
-      randBetween(min, max) {
-        return min + Math.random() * (max - min);
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        requestAnimationFrame(this.updateBound);
-      }
-    }
-
-    // new Snow();
-
-    // /新年倒计时//
-
-    function FreshTime() {
-      var endtime = new Date("2024/10/01,13:00:00"); //结束时间
-      var nowtime = new Date(); //当前时间
-      var lefttime = parseInt((endtime.getTime() - nowtime.getTime()) / 1000);
-      d = parseInt(lefttime / (24 * 60 * 60));
-      h = parseInt((lefttime / (60 * 60)) % 24);
-      m = parseInt((lefttime / 60) % 60);
-      s = parseInt(lefttime % 60);
-
-      document.getElementById("LeftTime").innerHTML =
-        d + "天 \t\t" + h + "小时 \t\t" + m + "分 \t\t" + s + "秒";
-      if (lefttime <= 0) {
-        document.getElementById("LeftTime").innerHTML = "我爱你	！";
-        clearInterval(sh);
-      }
-    }
-    FreshTime();
-    var sh;
-    sh = setInterval(FreshTime, 1000);
-	
-	
-	
-		var rotate = 0;
-	
-		var random = function(num) {
-			return Math.random() * num;
-		};
-	
-		var randomColor = function() {
-			return 'rgb(' + random(250) + ', ' + random(250) + ', ' + random(250) + ')';
-		};
-	
-		let arry = ["抱抱2分钟", "吻一分钟", "抱脑袋亲", "去吃烧烤", "出去逛街", "一起唱一首歌", "让对方摸...", "一起喝一杯奶茶", "把对方扑倒然后..", "闭眼接受惩罚", "学一种动物叫","说三声我爱你"]
-		var list = new Array(12).fill(0).map(function(o, i) {
-			return {
-				title: arry[i],
-				color: randomColor()
-			};
-		});
-	
-		var perAngle = 360 / list.length;
-	
-		var main = document.querySelector('.main');
-		var temp = document.querySelector('#temp');
-	
-		for (var i in list) {
-			var item = list[i];
-	
-			var newNode = temp.cloneNode(true);
-			newNode.style.display = 'block';
-			newNode.style.transform = 'rotateZ(' + (perAngle * i + perAngle / 2) + 'deg)';
-			newNode.querySelector('.bg').style.background = item.color;
-	
-			if (list.length > 2) {
-				var p = this.perAngle / 2; // 每份的角度两等分
-				var d = Math.tan(p * Math.PI / 180) * 100; // 对边的长度
-				var x = (100 - d) / 2; // 每份对边实际百分比
-				newNode.style.clipPath = `polygon(0% 50%, 100% ${x}%, 100% ${100 - x}%)`;
+		<script>
+			function checkPassword() {
+				const input = document.getElementById("passwordInput");
+				const password = input.value;
+				if (password === "我爱你") {
+					// 密码正确，跳转到 index.html  
+					window.location.href = 'select.html';
+				} else {
+					alert("密码错误，请重新输入！");
+					// 可以选择清空输入框或不做任何操作  
+					input.value = '';
+				}
 			}
-	
-			newNode.querySelector('.title').innerHTML = item.title;
-	
-			main.appendChild(newNode);
-		}
-	
-		var isRunning = false;
-	
-		function start() {
-			if (isRunning) {
-				console.warn('isRunning');
-				return;
-			}
-	
-			isRunning = true;
-	
-			document.querySelector('.winner').innerHTML = '';
-	
-			rotate += random(360) + 360 * 3; // 多转3圈
-	
-			main.style.transform = 'rotateZ(-' + rotate + 'deg)';
-		}
-	
-		function end() {
-			isRunning = false;
-	
-			console.log(rotate);
-			var index = Math.floor(rotate / perAngle) % list.length;
-			var winner = list[index];
-			document.querySelector('.winner').innerHTML = '中奖：' + winner.title;
-		}
-  </script>
+		</script>
+	</body>
 </html>
-
-
