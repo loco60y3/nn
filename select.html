@@ -2,57 +2,72 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 使得页面适应手机屏幕 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 使得页面适应手机屏幕 -->
 		<title></title>
 	</head>
 	<style>
-	body {
-		background-color: #ffedf5;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100vh;
-		/* 使内容垂直居中并填满整个视口 */
-		margin: 0;
-	}
-	
-	.code {
-		background-color: #fafafa;
-		padding: 20px;
-		border-radius: 8px;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-		text-align: center;
-	}
-	
-	input[type="text"] {
-		margin: 10px 0;
-		padding: 10px;
-		width: 200px;
-		/* 设置输入框宽度 */
-	
-	}
-	
-	button {
-		padding: 10px 20px;
-		font-size: 16px;
-		border:none;
+		body {
+			background-color: #ffedf5;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			/* 使内容垂直居中并填满整个视口 */
+			margin: 0;
+		}
+
+		.code {
+			background-color: #fafafa;
+			padding: 20px;
+			border-radius: 8px;
 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	}
+			text-align: center;
+		}
+
+		.title {
+			padding: 20px;
+			border-radius: 8px;
+			text-align: center;
+		}
+
+		input[type="text"] {
+			margin: 10px 0;
+			padding: 10px;
+			width: 200px;
+			/* 设置输入框宽度 */
+
+		}
+
+		button {
+			padding: 10px 20px;
+			font-size: 16px;
+			border: none;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
 	</style>
 	<body>
-		<div class="code">
-			<h3>七夕快乐呀</h3>
-			<button onclick="toto('shouxieka')">我想看手写的卡</button> <p></p>
-			<button onclick="toto('daojishi')">我想看倒计时</button> <p></p>
-			<button onclick="toto('chouka')">我想抽奖</button>
-			<h3>可闲，mua</h3>
+		<div class="title">
+			<h3>致，我最亲爱的可闲</h3>
+
+			<div class="code">
+				<!-- <h3>虽然七夕已经过去一天了</h3> -->
+				<button onclick="toto('shouxieka')">我的手写卡</button>
+				<p></p>
+				<button onclick="toto('daojishi')">见面倒计时</button>
+				
+				<p></p>
+				<button onclick="toto('liuyanqiang')">留言墙</button>
+				<p></p>
+				<button onclick="toto('chouka')">我想抽奖</button>
+				
+				<h3>可闲，mua</h3>
+			</div>
 		</div>
 	</body>
 	<script>
-			
-		function toto(w){
-			 console.log(2)
-				window.location.href = w+".html";
+		function toto(w) {
+			console.log(2)
+			window.location.href = w + ".html";
 		}
 	</script>
 </html>
