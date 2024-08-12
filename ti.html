@@ -43,15 +43,15 @@
 		<div class="code">
 			<h1>你是可闲吗</h1>
 			<div>
-				<input type="text" id="passwordInput" placeholder="可闲可知道我们的密码"> <!-- 改为密码输入框 -->
+				<input type="text" id="passwordInput" placeholder="可闲一定知道密码"> <!-- 改为密码输入框 -->
 			</div>
-			<button onclick="checkPassword()">我输入完密码啦，进去</button> <br>
+			<button onclick="checkPassword()">我要进去!</button> <br>
 		</div>
 		<script>
 			function checkPassword() {
 				const input = document.getElementById("passwordInput");
 				const password = input.value;
-				if (password === "我爱你") {
+				if (password === "20060104") {
 					// 密码正确，跳转到 index.html  
 					window.location.href = 'select.html';
 				} else {
